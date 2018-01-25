@@ -38,6 +38,7 @@ class SessionsController < ApplicationController
 		notfound = 0
 
 		Capybara.javascript_driver = :headless_chrome
+		Capybara.default_wait_time = 10
 
 		capy_session = Capybara::Session.new(:chrome)
 		# IDs

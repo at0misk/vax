@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 		  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
 		    chromeOptions: { args: %w(headless disable-gpu) }
 		  )
-		  app.timeout = 120
+
 		  Capybara::Selenium::Driver.new app,
 		    browser: :chrome,
 		    desired_capabilities: capabilities

@@ -53,7 +53,7 @@ class SessionsController < ApplicationController
 		ids.each do |val|
 			capy_session.visit('https://login.www.vaxvacationaccess.com/ManageUsers/ManageUsers.aspx')
 			capy_session.find_field('User Name:').set("#{val}")
-			capy_session.click_button('Find Users')
+			capy_session.find('.find-user-btns-wrap>button').click
 			puts capy_session.has_text?("No users found.")
 			if capy_session.has_text?("No users found.")
 				puts "No User Found"

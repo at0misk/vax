@@ -40,6 +40,7 @@ class SessionsController < ApplicationController
 		Capybara.javascript_driver = :headless_chrome
 
 		capy_session = Capybara::Session.new(:chrome)
+		capy_session.read_timeout = 120
 		# IDs
 		ids = Agent.all.pluck(:agent_id)
 		# Login

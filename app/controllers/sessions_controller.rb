@@ -48,12 +48,12 @@ class SessionsController < ApplicationController
 		capy_session.find_field('User Name:').set(Figaro.env.username)
 		capy_session.find_field('ctl00_ContentPlaceHolder_ctl00_ctl01_LoginCtrl_Password').set(Figaro.env.password)
 		capy_session.click_button('Login')
-		# capy_session.find("#gear").click
+		capy_session.find("#gear").click
 		# Loop through and attempt to delete
 		ids.each do |val|
 			capy_session.visit('https://login.www.vaxvacationaccess.com/ManageUsers/ManageUsers.aspx')
 			capy_session.find_field('User Name:').set("#{val}")
-			capy_session.find('.find-user-btns-wrap>button').click
+			capy_session.click_button('Find Users')
 			puts capy_session.has_text?("No users found.")
 			if capy_session.has_text?("No users found.")
 				puts "No User Found"

@@ -227,7 +227,7 @@ DEPENDENCIES
   roo-xls
   rspec-rails
   sass-rails (~> 5.0)
-  selenium-webdriver (~> 2.53.4)
+  selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3

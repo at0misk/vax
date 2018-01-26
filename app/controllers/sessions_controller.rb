@@ -22,13 +22,13 @@ class SessionsController < ApplicationController
 
 		Capybara.register_driver :chrome do |app|
 		  client = Selenium::WebDriver::Remote::Http::Default.new
-		  client.timeout = 111120 # instead of the default 60
+		  # client.timeout = 120 # instead of the default 60
 		  Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client)
 		end
 
 		Capybara.register_driver :headless_chrome do |app|
 		  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-		    chromeOptions: { args: %w(window-size=1920,1080 no-sandbox user-data-dir=/root) }
+		    chromeOptions: { args: %w(headless disable-gpu) }
 		  )
 
 		  Capybara::Selenium::Driver.new app,

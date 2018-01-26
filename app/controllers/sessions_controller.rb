@@ -21,7 +21,9 @@ class SessionsController < ApplicationController
 		# include Capybara::DSL
 
 		Capybara.register_driver :chrome do |app|
-		  Capybara::Selenium::Driver.new(app, browser: :chrome)
+		  client = Selenium::WebDriver::Remote::Http::Default.new
+		  client.timeout = 111120 # instead of the default 60
+		  Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client)
 		end
 
 		Capybara.register_driver :headless_chrome do |app|
@@ -30,7 +32,6 @@ class SessionsController < ApplicationController
 		  )
 
 		  Capybara::Selenium::Driver.new app,
-		  	timeout: 50000000,
 		    browser: :chrome,
 		    desired_capabilities: capabilities
 		end

@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 
 		Capybara.register_driver :headless_chrome do |app|
 		  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-		    chromeOptions: { args: %w(headless disable-gpu no-sandbox) }
+		    chromeOptions: { args: %w(window-size=1920,1080 no-sandbox user-data-dir=/root) }
 		  )
 
 		  Capybara::Selenium::Driver.new app,

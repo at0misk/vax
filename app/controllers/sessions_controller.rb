@@ -46,7 +46,7 @@ class SessionsController < ApplicationController
 		# IDs
 		ids = Agent.all.pluck(:agent_id)
 		# Login
-		capy_session.visit "https://login.www.vaxvacationaccess.com/Default.aspx?anchorstore=none"
+		capy_session.visit "http://google.com"
 		capy_session.find_field('Agency Number:').set(Figaro.env.agency)
 		capy_session.find_field('User Name:').set(Figaro.env.username)
 		capy_session.find_field('ctl00_ContentPlaceHolder_ctl00_ctl01_LoginCtrl_Password').set(Figaro.env.password)

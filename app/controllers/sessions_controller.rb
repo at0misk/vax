@@ -30,6 +30,7 @@ class SessionsController < ApplicationController
 		  )
 
 		  Capybara::Selenium::Driver.new app,
+		  	timeout: 50000000,
 		    browser: :chrome,
 		    desired_capabilities: capabilities
 		end

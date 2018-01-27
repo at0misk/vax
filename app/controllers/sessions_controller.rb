@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
 		Capybara.javascript_driver = :chrome
 		# Capybara.default_max_wait_time = 120
 
-		capy_session = Capybara::Session.new(:chrome)
+		capy_session = Capybara::Session.new(:headless_chrome)
 		# IDs
 		ids = Agent.all.pluck(:agent_id)
 		# Login

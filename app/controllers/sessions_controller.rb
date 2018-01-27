@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
 		deleted = 0
 		notfound = 0
 
-		Capybara.javascript_driver = :headless_chrome
+		Capybara.javascript_driver = :chrome
 		# Capybara.default_max_wait_time = 120
 
 		capy_session = Capybara::Session.new(:chrome)

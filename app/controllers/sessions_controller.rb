@@ -40,6 +40,12 @@ class SessionsController < ApplicationController
 		notfound = 0
 
 		Capybara.javascript_driver = :headless_chrome
+
+		if RUBY_PLATFORM.include? "linux"
+		  Selenium::WebDriver::Chrome.driver_path = "/usr/bin/chromedriver"
+		  Selenium::WebDriver::Chrome.path = "/usr/bin/google-chrome"
+		end
+		Capybara.javascript_driver = :selenium_chrome_headless
 		# Capybara.default_max_wait_time = 120
 
 		capy_session = Capybara::Session.new(:chrome)

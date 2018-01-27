@@ -21,9 +21,7 @@ class SessionsController < ApplicationController
 		# include Capybara::DSL
 
 		Capybara.register_driver :chrome do |app|
-		  client = Selenium::WebDriver::Remote::Http::Default.new
-		  # client.timeout = 120 # instead of the default 60
-		  Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client)
+		  Capybara::Selenium::Driver.new(app, browser: :chrome)
 		end
 
 		Capybara.register_driver :headless_chrome do |app|
@@ -40,19 +38,13 @@ class SessionsController < ApplicationController
 		notfound = 0
 
 		Capybara.javascript_driver = :headless_chrome
-
-		if RUBY_PLATFORM.include? "linux"
-		  Selenium::WebDriver::Chrome.driver_path = "/usr/bin/chromedriver"
-		  Selenium::WebDriver::Chrome.path = "/usr/bin/google-chrome"
-		end
-		Capybara.javascript_driver = :selenium_chrome_headless
 		# Capybara.default_max_wait_time = 120
 
 		capy_session = Capybara::Session.new(:chrome)
 		# IDs
 		ids = Agent.all.pluck(:agent_id)
 		# Login
-		capy_session.visit "http://google.com"
+		capy_session.visit "https://login.www.vaxvacationaccess.com/Default.aspx?anchorstore=none"
 		capy_session.find_field('Agency Number:').set(Figaro.env.agency)
 		capy_session.find_field('User Name:').set(Figaro.env.username)
 		capy_session.find_field('ctl00_ContentPlaceHolder_ctl00_ctl01_LoginCtrl_Password').set(Figaro.env.password)

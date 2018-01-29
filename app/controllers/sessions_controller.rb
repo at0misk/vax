@@ -37,9 +37,11 @@ class SessionsController < ApplicationController
 		deleted = 0
 		notfound = 0
 
-		Capybara.javascript_driver = :headless_chrome
+		Capybara.javascript_driver = :chrome
 		# Capybara.default_max_wait_time = 120
 
+		# USER HEADLESS_CHROME ON EC2!!!!!!!!!!
+		
 		capy_session = Capybara::Session.new(:headless_chrome)
 		# IDs
 		ids = Agent.all.pluck(:agent_id)
@@ -63,20 +65,19 @@ class SessionsController < ApplicationController
 				puts "User Found"
 				deleted += 1
 				puts deleted
-				capy_session.click_button('Remove Account')
+				if capy_session.has_button?('Remove Account')
+					capy_session.click_button('Remove Account')
+				end
 				if capy_session.has_text?("Removed account for")
 					puts "continue"
 				end
 			end
 		end
-		# fill_in('ctl00$ContentPlaceHolder$ctl00$ctl01$LoginCtrl$UserName', with: 'Ron Archer')
-		# fill_in('ctl00$ContentPlaceHolder$ctl00$ctl01$LoginCtrl$Password', with: 'Oceanview4148')
-
 
 		# if capy_session.has_content?("Login")
 		#   puts "All shiny, captain!"
 		# else
-		#   puts ":( no tagline fonud, possibly something's broken"
+		#   puts ":( no tagline found, possibly something's broken"
 		#   exit(-1)
 		# end
 		session[:deleted] = deleted

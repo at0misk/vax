@@ -42,7 +42,7 @@ class SessionsController < ApplicationController
 
 		# USER HEADLESS_CHROME ON EC2!!!!!!!!!!
 		
-		capy_session = Capybara::Session.new(:headless_chrome)
+		capy_session = Capybara::Session.new(:chrome)
 		# IDs
 		ids = Agent.all.pluck(:agent_id)
 		# Login
